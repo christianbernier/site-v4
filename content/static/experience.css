@@ -1,0 +1,46 @@
+.experience-summary {
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+	margin-bottom: 20px;
+
+	&:not(:first-of-type) {
+		margin-top: 50px;
+	}
+
+	& img {
+		width: 120px;
+		height: 120px;
+		border-radius: 6px;
+	}
+
+	& p {
+		padding: 5px 0;
+	}
+
+	& .experience-header {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	& .experience-company-name {
+		font-weight: bold;
+		font-size: 1.4rem;
+	}
+
+	& .experience-position-title {
+		font-style: italic;
+		padding: 0;
+	}
+
+	& .experience-secondary-information p {
+		font-size: 1rem;
+		font-weight: 300;
+		padding: 2px 0;
+	}
+}
+
+li {
+	padding: 5px 0 !important;
+}

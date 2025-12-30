@@ -1,0 +1,16 @@
+[template=base.html]
+[title={{ article_title }} | Christian Bernier]
+[additional_styles=/blog.css]
+---
+<div class="article-links">
+  <a href="/blog">← all posts</a>
+</div>
+
+<h1 class="page-title">{{ article_title }}</h1>
+<span class="article-published">Published <time>{{ published }}</time></span>
+
+<hr>
+
+<article>
+  {{ body }}
+</article>

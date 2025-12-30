@@ -1,0 +1,22 @@
+# Pages
+/ index.html
+/experience experience.html
+/education education.html
+/projects projects.html
+/blog blog.html
+/blog/new-year-new-site 2026-01-01-new-year-new-site.html
+
+# Styles
+/global.css global.css
+/experience.css experience.css
+/education.css education.css
+/projects.css projects.css
+/blog.css blog.css
+
+# Pictures
+/favicon.png favicon.png
+/cern.png cern.png
+/cisco.png cisco.png
+/khoury.png khoury.png
+/mos.png mos.png
+/northeastern.png northeastern.png

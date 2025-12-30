@@ -1,0 +1,23 @@
+.project {
+  padding: 20px 0;
+}
+
+p {
+  padding: 5px 0 !important;
+}
+
+.project-title {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.project-secondary-information p {
+  font-size: 1rem;
+  font-weight: 300;
+  padding: 2px 0;
+}
+
+.bullet {
+  font-size: 0.8rem !important;
+  margin: 0 2px !important;
+}

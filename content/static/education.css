@@ -1,0 +1,37 @@
+.education {
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+	margin-bottom: 20px;
+}
+
+.education img {
+	width: 150px;
+	height: 150px;
+}
+
+.education p {
+	padding: 5px 0;
+}
+
+.education-details {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.education-name {
+	font-weight: bold;
+	font-size: 1.4rem;
+}
+
+.education-subtitle {
+	font-weight: 300;
+	padding: 0 !important;
+}
+
+@media only screen and (max-width: 850px) {
+	.education {
+		flex-direction: column;
+	}
+}

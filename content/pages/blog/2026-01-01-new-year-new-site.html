@@ -1,0 +1,57 @@
+[template=article.html]
+[article_title=New Year, New Site]
+[published=January 1st, 2026]
+---
+<section>
+  <h2>What is a personal website, anyway?</h2>
+  <p>
+    By my count, this is the fourth major revision of my personal website. However, I've never had a clear idea of what content I should include on my site. I eventually settled on a pseudo resume, but it has always felt boring to me. The process of creating it doesn't feel as exciting and challenging as other side projects, and the final product is effective (I suppose) yet still lacking character.
+  </p>
+</section>
+
+<section>
+  <h2>My main goals for v4</h2>
+  <p>
+    I had the idea to challenge myself to create a site using pure HTML and CSS, to make it as fast and simple as possible. Quickly, I realized how impractical this goal was. Creating even just a few pages with the same navigation bar, header, and styling results in incredible amounts of duplicated code. This new rendition quickly shifted to creating a system for building (and eventually serving) my site. I developed a method of writing HTML and CSS which is then combined into static files which can be served.
+  </p>
+  <p>
+    Once I had this working, I needed a way to serve the site. Wanting to better understand how web servers work, I decided to write my own! I wrote a program to do everything from parsing incoming HTTP requests, fetching files using the file system, and creating HTTP responses to send back to the client. The goal was learning, not necessarily the most performant or secure server. This aspect of the site came with the additional challenge of containerizing the server and configuring my network to actually allow connections from the Internet.
+  </p>
+</section>
+
+<section>
+  <h2>Building the site</h2>
+  <p>
+    I chose to write the site builder in Rust, given its memory safety promises and increasing prevalence in the world. Having never used the language before, I was faced with a notoriously steep learning curve. However, with enough trial and error, I was able to create a primitive parser to interpret the scheme I chose and generate valid HTML files to distribute.
+  </p>
+  <p>
+    The site content is broken into a few subdirectories. First is the static directory, which is copied exactly to the distribution directory (for things like the favicon, other images, CSS, etc.). Next are templates, which are meant to be the starting point for any page. The base template includes the HTML head element, navigation elements, and styles. Other templates, such as the article template this page uses, build off the base template to include other elements. Similar to templates, the components directory defines modular blocks of HTML which can be used throughout pages. Examples include lists, experience summaries, and so on. Finally, the pages directory contains HTML documents which can use templates and components to construct a final webpage for the site.
+  </p>
+  <p>
+    Needed in the server (more on this later), I also include a routes.txt file in the static directory, to enumerate specific valid resources on the site. This is to prevent attempts at requesting files outside the ones intended for distribution, but it comes at the cost of having to add a line to this file for new pages.
+  </p>
+</section>
+
+<section>
+  <h2>Serving the site</h2>
+  <p>
+    In my networking class in college, I had one assignment which required parsing and constructing HTTP requests and responses. I found this aspect of the assignment to be rather interesting since it made me appreciate the data our web browsers invisibly transmit for every request on the web. Any sensible person would use an established HTTP library to handle methods, status codes, headers, and everything else, but I decided to take serving my new personal website as a challenge.
+  </p>
+  <p>
+    Again in Rust, I wrote functions to listen for TCP connections, read the HTTP start line, headers, and a body (if there is one). I then process the request by fetching the proper file and prepare the response. As mentioned in the building section, I maintain a list of valid routes on the site. This limits potential attacks using requests like <code>GET ../../something-else.txt</code>.
+  </p>
+</section>
+
+<section>
+  <h2>Hosting</h2>
+  <p>
+    I have long been hosting my server on the Internet since I use various services like Immich, a VPN, and Minecraft. I plan to detail hosting services on my server more thoroughly in a future blog post (stay tuned!). For now, just know that I use a custom script to maintain a DNS record on my nameserver to point to my home's IP address. Then, I run an nginx reverse proxy to direct each subdomain to a specific port, where the service is running. This is also what I use for setting up certificates for HTTPS functionality.
+  </p>
+</section>
+
+<section>
+  <h2>Conclusion</h2>
+  <p>
+    This project has been a lot more fun than I anticipated! I've learned so much about Rust, HTTP, and even HTML. I feel that building a site generator and server from first principles allows my brain to understand the whole process. There's no mystery functionality from a web framework, no unexpected (or rather no unexplainable) results from using a specific server. For anyone debating trying a similar project, I would recommend it, even if you never make it public. The process of developing this site has already been so rewarding, and I look forward to making it even better as time continues.
+  </p>
+</section>

@@ -1,0 +1,10 @@
+services:
+  site:
+    image: 'rust:1.92'
+    ports:
+      - '8000:8000'
+    command: 'cargo run'
+    volumes:
+      - './content:/content'
+      - './src:/src'
+      - './Cargo.toml:/Cargo.toml'

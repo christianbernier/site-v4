@@ -1,0 +1,161 @@
+:root {
+  --dark: #262626;
+	--light: #fdfffc;
+	--primary: #c41e3d;
+
+	--font-size-title: 4rem;
+	--font-size-nav-link: 1.6rem;
+
+	--margin-top: 80px;
+	--margin-md: 6px;
+	--margin-xl: 48px;
+
+	--nav-link-spacing: 16px;
+}
+
+@media only screen and (max-width: 850px) {
+	:root {
+		--margin-top: 30px;
+	}
+}
+
+body {
+	margin: 0;
+	height: 100vh;
+	display: grid;
+	grid-template-columns: 2fr 3fr;
+	grid-template-rows: auto;
+}
+
+p, a, span, h1, h2, h3, h4, h5, h6, li {
+	color: var(--dark);
+	font-family: 'Helvetica';
+	padding: 0;
+	margin: 0;
+}
+
+p, li {
+	font-size: 1.2rem;
+	padding: 10px 0;
+	font-weight: 400;
+	line-height: 125%;
+}
+
+ul {
+	margin: 0;
+	list-style-type: square;
+}
+
+.page-title {
+	font-size: 1.8rem;
+	padding-bottom: 1.8rem;
+}
+
+hr {
+	border-width: 0.7px;
+	border-color: #eee;
+}
+
+#sidebar {
+  padding: var(--margin-top);
+	background-color: var(--primary);
+	display: flex;
+	justify-content: flex-end;
+}
+
+main {
+  padding: var(--margin-top);
+	max-width: 80ch;
+	overflow-y: auto;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+main::-webkit-scrollbar {
+	display: none;
+}
+
+@media only screen and (max-width: 850px) {
+	body {
+		height: fit-content;
+		width: 100vw;
+		grid-template-columns: auto;
+		grid-template-rows: auto auto;
+	}
+
+	#sidebar {
+		padding: calc(2 * var(--margin-top)) var(--margin-top);
+		justify-content: flex-start;
+	}
+
+	main {
+		padding: calc(2 * var(--margin-top)) var(--margin-top);
+		overflow-y: hidden;
+	}
+}
+
+#sidebar > div {
+  width: fit-content;
+	display: flex;
+	flex-direction: column;
+	gap: var(--margin-xl);
+}
+
+#logo {
+	width: fit-content;
+	height: fit-content;
+	margin: 0;
+	text-align: left;
+	font-size: var(--font-size-title);
+	line-height: 75%;
+	letter-spacing: -2px;
+}
+
+#logo a {
+	text-decoration: none;
+}
+
+#logo_top {
+	color: var(--dark);
+}
+
+#logo_bottom {
+	color: var(--light);
+}
+
+nav {
+	width: fit-content;
+	display: flex;
+	flex-direction: column;
+	gap: var(--nav-link-spacing);
+}
+
+nav a {
+	font-size: var(--font-size-nav-link);
+	font-weight: bold;
+	letter-spacing: -1px;
+}
+
+/* Labeled List */
+.labeled-list {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	padding: 20px 0;
+
+	& p {
+		font-weight: bold;
+	}
+
+	& p, & li {
+		padding: 0;
+	}
+
+	li + li {
+		margin: 8px 0;
+	}
+
+	& ul {
+		margin: 0;
+		list-style-type: none;
+	}
+}
