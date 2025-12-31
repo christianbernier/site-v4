@@ -42,6 +42,7 @@ impl ServerIo {
         }
     }
     let metadata_str = String::from_utf8_lossy(&metadata_bytes);
+    println!("metadata: {}", metadata_str);
     let metadata_lines: Vec<&str> = metadata_str.split("\r\n").collect();
 
     let headers: Vec<HttpHeader> = metadata_lines[1..]
