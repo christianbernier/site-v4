@@ -56,6 +56,18 @@ fn handle_connection(conn: &mut net::TcpStream, router: Router) -> Result<(), Se
                 }
         };
 
+        println!("response:\n{}",
+            format!(
+                "{} {}{}\r\n\r\n",
+                response.protocol.to_string(),
+                response.status.to_string(),
+                response.headers
+                    .iter()
+                    .map(|h| format!("\r\n{}: {}", h.name, h.value))
+                    .collect::<String>(),
+            )
+        );
+
         ServerIo::write_response(&mut writer, &response)?;
 
         match HttpHeader::get_header(&request.metadata.headers, "Connection").as_deref() {
