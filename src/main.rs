@@ -58,10 +58,11 @@ fn handle_connection(conn: &mut net::TcpStream, router: Router) -> Result<(), Se
 
         ServerIo::write_response(&mut writer, &response)?;
 
-        match HttpHeader::get_header(&request.metadata.headers, "Connection").as_deref() {
-            Some("keep-alive") => (),
-            _ => { return Ok(()) }
-        }
+        // match HttpHeader::get_header(&request.metadata.headers, "Connection").as_deref() {
+        //     Some("keep-alive") => (),
+        //     _ => { return Ok(()) }
+        // }
+        return Ok(())
     };
 }
 
