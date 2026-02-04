@@ -66,18 +66,15 @@ fn handle_connection(conn: &mut net::TcpStream, router: Router) -> Result<(), Se
     };
 }
 
-fn main() -> io::Result<()> {
+#[tokio::main]
+async fn main() -> io::Result<()> {
     SiteBuilder::compile_site().expect("Error compiling site!");
 
-    net::TcpListener::bind("0.0.0.0:8000")
-        .expect("Cannot bind to port.")
-        .incoming()
-        .for_each(|conn| {
-            std::thread::spawn(|| {
-                let mut stream = conn.expect("Error connecting to client.");
-                let router = Router::from_file("dist", "dist/routes.txt", "404.html").unwrap();
-                handle_connection(&mut stream, router).expect("Error with connection!");
-            });
-        });
-    Ok(())
+    let listener = tokio::net::TcpListener::bind("0.0.0.0:8000").await?;
+    loop {
+        let (socket, _) = listener.accept().await?;
+        let router = Router::from_file("dist", "dist/routes.txt", "404.html").unwrap();
+        let mut tcp_stream = socket.into_std()?;
+        handle_connection(&mut tcp_stream, router).expect("Error with connection!");
+    }
 }
