@@ -75,6 +75,8 @@ async fn main() -> io::Result<()> {
         let (socket, _) = listener.accept().await?;
         let router = Router::from_file("dist", "dist/routes.txt", "404.html").unwrap();
         let mut tcp_stream = socket.into_std()?;
-        handle_connection(&mut tcp_stream, router).expect("Error with connection!");
+        if handle_connection(&mut tcp_stream, router).is_err() {
+            println!("Error with connection.");
+        }
     }
 }
